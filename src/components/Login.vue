@@ -26,6 +26,7 @@ export default {
         .then(res => {
           if (res.data.code === "1000") {
             alert("登录成功");
+             this.$router.push('/admin')
           } else {
             alert("登录失败");
             // 登陆失败跳转到首页
