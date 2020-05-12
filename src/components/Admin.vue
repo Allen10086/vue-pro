@@ -1,39 +1,38 @@
 <template>
-
-  <el-container>
-
-    <el-header>
-      <i class="el-icon-menu" style="margin-left: 0"></i>
-      后台管理
-    </el-header>
     <el-container>
-      <el-aside width="200px">
-        <el-menu
-          default-active="2"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b"
-          class="el-menu-vertical-demo"
-          style="width: 100%;height: 100%"
-        > <!--collapse 是否水平收起菜单-->
-          <!--使用element-ui的菜单，在SubMenu Attribute中有一个index的属性，如果index的值从后端传入，则会报错-->
-          <!-- index的值不能有空格，并且要为字符串类型，将其转为字符串就不会报错了-->
-          <el-menu-item
-            :index="item.index.toString()"
-            v-for="(item) in MenuList"
-            :key="item.index"
-            @click="MenuFunc(item.RouterName)"
-          >
-            <i :class="item.icon"></i>
-            <span slot="title">{{item.title}}</span>
-          </el-menu-item>
-        </el-menu>
-      </el-aside>
-      <el-main>
-        <router-view></router-view>
-      </el-main>
+      <el-header>
+        <i class="el-icon-menu" style="margin-left: 0"></i>
+        后台管理
+      </el-header>
+      <el-container>
+        <el-aside width="200px">
+          <el-menu
+            default-active="2"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+            class="el-menu-vertical-demo"
+            style="width: 100%;height: 100%"
+          > <!--collapse 是否水平收起菜单-->
+            <!--使用element-ui的菜单，在SubMenu Attribute中有一个index的属性，如果index的值从后端传入，则会报错-->
+            <!-- index的值不能有空格，并且要为字符串类型，将其转为字符串就不会报错了-->
+            <el-menu-item
+              :index="item.index.toString()"
+              v-for="(item) in MenuList"
+              :key="item.index"
+              @click="MenuFunc(item.RouterName)"
+            >
+              <i :class="item.icon"></i>
+              <span slot="title">{{item.title}}</span>
+            </el-menu-item>
+          </el-menu>
+        </el-aside>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
     </el-container>
-  </el-container>
+
 </template>
 
 <script>
@@ -94,6 +93,10 @@
     text-align: center;
     line-height: 60px;
   }
-
+  /*.homeBox .el-container{*/
+  /*  padding: 0;*/
+  /*  margin: 0;*/
+  /*  height: 100%;*/
+  /*}*/
 
 </style>

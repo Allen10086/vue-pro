@@ -11,5 +11,10 @@ export default {
 </script>
 
 <style>
-
+body{
+  /*充满屏幕*/
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
 </style>
