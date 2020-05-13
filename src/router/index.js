@@ -7,7 +7,7 @@ import Survey from '@/components/survey'
 import Admin from '@/components/Admin'               // 后台管理
 import Index from '@/components/admin/Index'         // 仪表盘
 import Page from '@/components/admin/Page'           // 页面管理
-import Pulish from '@/components/admin/Pulish'       // 发布文章
+import Publish from '@/components/admin/Publish'       // 发布文章
 import Article from '@/components/admin/Article'     // 文章管理
 import Label from '@/components/admin/Label'         // 标签
 import File from '@/components/admin/File'           // 文件管理
@@ -29,7 +29,7 @@ export default new Router({
         [
           {path: '/admin/index', name: 'index', component: Index},
           {path: '/admin/page', name: 'page', component: Page},
-          {path: '/admin/pulish', name: 'pulish', component: Pulish},
+          {path: '/admin/publish', name: 'publish', component: Publish},
           {path: '/admin/article', name: 'article', component: Article},
           {path: '/admin/file', name: 'file', component: File},
           {path: '/admin/label', name: 'label', component: Label},

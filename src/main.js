@@ -1,5 +1,3 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -12,11 +10,14 @@ const VueRouterPush = Router.prototype.push
 Router.prototype.push = function push(to) {
   return VueRouterPush.call(this, to).catch(err => err)
 }
+import mavonEditor from 'mavon-editor'   // 引入markdown 所有组件
+import 'mavon-editor/dist/css/index.css'
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
-Vue.use(ElementUI);    // 在vue脚手架中使用ElementUI
 
+Vue.use(ElementUI);    // 在vue脚手架中使用ElementUI
+Vue.use(mavonEditor)   // markdown  挂在到全局
 // Vue.use(router)
 
 /* eslint-disable no-new */

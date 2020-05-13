@@ -49,7 +49,7 @@
     {
       index: 2, title: "发布文章",
       icon: "el-icon-edit-outline",
-      RouterName: "pulish"
+      RouterName: "publish"
     },
     {
       index: 3,
