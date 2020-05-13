@@ -7,10 +7,7 @@
          @click="IsCollapse"></i>
     </div>
 
-    <el-header>
-
-      后台管理
-    </el-header>
+    <el-header>博客后台管理</el-header>
     <el-container>
       <el-aside width="IsCollapse ? 80px : 300px">
         <el-menu
@@ -61,7 +58,7 @@
     {
       index: 5,
       title: "分类/标签",
-      icon: "el-icon-s-management",
+      icon: "el-icon-price-tag",
       RouterName: "label"
     },
     {index: 6, title: "文件管理", icon: "el-icon-s-help", RouterName: "file"},
@@ -98,7 +95,10 @@
     width: 150px;
     /*min-height: 400px;*/
   }
-
+  .el-header{
+    font-size: 20px ;
+    font-weight: bold;
+  }
   .el-header {
     background-color: #f6f6f6;
     color: #666;

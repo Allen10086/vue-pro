@@ -1,12 +1,15 @@
 <template>
   <div class="publish">
     <h1>发布文章</h1>
+    <div id="input">
+      <el-input v-model="ArticleTitle" placeholder="请输入文章标题"></el-input>
+      <el-input v-model="ArticleLable" placeholder="请输入文章分类"></el-input>
+    </div>
     <div id="editor">
-      <mavon-editor style="height: 100%" v-model="text"></mavon-editor>
+      <mavon-editor style="height: 100%" v-model="Text"></mavon-editor>
     </div>
     <el-button type="primary" plain @click="PublishButton">提交</el-button>
   </div>
-
 </template>
 
 <script>
@@ -17,14 +20,16 @@
     name: "pulishNav",
     data(){
       return {
-        text:''
+        Text:'',
+        ArticleTitle:'',
+        ArticleLable:''
       }
     },
     methods:{
       PublishButton(){
-        if (this.text){
+        if (this.Text){
           // 获取文章之后的处理逻辑
-          console.log(this.text)
+          console.log(this.Text)
         }else {
           alert("文章内容不能不空！")
         }
