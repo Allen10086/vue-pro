@@ -4,6 +4,7 @@
     <div id="input">
       <el-input v-model="ArticleTitle" placeholder="请输入文章标题"></el-input>
       <el-input v-model="ArticleLable" placeholder="请输入文章分类"></el-input>
+      <el-input v-model="ArticleBiref" placeholder="文章简介"></el-input>
     </div>
     <div id="editor">
       <mavon-editor style="height: 100%" v-model="Text"></mavon-editor>
@@ -22,7 +23,8 @@
       return {
         Text:'',
         ArticleTitle:'',
-        ArticleLable:''
+        ArticleLable:'',
+        ArticleBiref:''
       }
     },
     methods:{
