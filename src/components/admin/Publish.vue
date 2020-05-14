@@ -87,7 +87,6 @@
       return {
         Text: "",
         ArticleTitle: "", // 文章标题
-        ArticleBiref: "",
         // 文章分类
         options: [
           {
@@ -112,7 +111,7 @@
           }
         ],
         ArticleLable: "", // 文章分类
-        textarea: "",
+        textarea: "",     // 简介
         fileList: [
           {
             name: "food.jpeg",
@@ -145,18 +144,24 @@
       // 文件上传触发的函数   自定义请求:http-request="uploadSectionFile"
       uploadSectionFile(param) {
         var fileObj = param.file                // 要上传的文件对象
-        var form = new FormData()
-        form.append("upload", fileObj)    // 传文件  upload是后端指定的key
+        var formData = new FormData()
+        formData.append("upload", fileObj)    // 传文件  upload是后端指定的key
         console.log(fileObj)
         // form.append('id',this.srid)          // 传其它参数文件
-        this.$axios.post('http://127.0.0.1:9000/upload', form)
-          .then(function (res) {
-            alert('成功');
+        this.$axios({
+          url: "http://127.0.0.1:9000/upload",
+          method: 'post',
+          data: formData,
+          headers: {'Content-Type': 'multipart/form-data'},
+        })
+          .then(res => {
+            console.log(res)
+            alert("上传成功")
           })
-          .catch(function (error) {
-            alert("上传失败");
-            console.log(error);
-          });
+          .catch(err => {
+            console.log(err)
+            alert("上传失败")
+          })
       },
 
 
@@ -171,6 +176,7 @@
     width: 100%;
     height: 580px;
   }
+
   .el-row {
     margin-bottom: 20px;
   }
