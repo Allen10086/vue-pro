@@ -12,7 +12,7 @@ export default {
     return {};
   },
   created() {
-    console.log("shauxin");
+    // console.log("shauxin");
   }
 };
 </script>
