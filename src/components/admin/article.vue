@@ -8,6 +8,7 @@
           <el-input placeholder="根据文章标题或分类搜索" v-model="search" clearable></el-input>
         </el-col>
         <el-button type="primary" icon="el-icon-search" @click="SearchArtcle(search)"></el-button>
+        <el-button type="danger" icon="el-icon-delete" @click="DeleteArtcle"></el-button>
       </el-row>
       <!--文章展示-->
       <el-row>
@@ -65,7 +66,24 @@
             </el-table-column>
           </el-table>
         </el-col>
+       
       </el-row>
+       <!--分页-->
+        <el-row>
+          <el-col>
+            <div class="block">
+              <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="currentPage4"
+                :page-sizes="[10, 20, 30, 40]"
+                :page-size="100"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="100"
+              ></el-pagination>
+            </div>
+          </el-col>
+        </el-row>
     </el-main>
   </el-container>
 </template>
@@ -103,6 +121,54 @@ var tableData = [
       "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
     ],
     score: 5
+  },
+  {
+    id: "20022", // 文章id
+    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
+    category: "钢铁是怎样炼成的额", // 所属分类
+    add_time: "2020-02-16 09:27:33", // 发布时间
+    // update_time: "2020-05-16 16:27:33", // 修改时间
+    views_number: "9999", //浏览量
+    comments_number: "3453", // 评论数
+    release_status: true, // 发布状态
+    article_vover_url:
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+    article_vover_srcList: [
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+    ],
+    score: 2
+  },
+  {
+    id: "20022", // 文章id
+    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
+    category: "钢铁是怎样炼成的额", // 所属分类
+    add_time: "2020-02-16 09:27:33", // 发布时间
+    // update_time: "2020-05-16 16:27:33", // 修改时间
+    views_number: "9999", //浏览量
+    comments_number: "3453", // 评论数
+    release_status: false, // 发布状态
+    article_vover_url:
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+    article_vover_srcList: [
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+    ],
+    score: 4.5
+  },
+  {
+    id: "20022", // 文章id
+    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
+    category: "钢铁是怎样炼成的额", // 所属分类
+    add_time: "2020-02-16 09:27:33", // 发布时间
+    // update_time: "2020-05-16 16:27:33", // 修改时间
+    views_number: "9999", //浏览量
+    comments_number: "3453", // 评论数
+    release_status: true, // 发布状态
+    article_vover_url:
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+    article_vover_srcList: [
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+    ],
+    score: 4.7
   }
 ];
 export default {
@@ -110,7 +176,11 @@ export default {
   data() {
     return {
       tableData: tableData,
-      search: ""
+      search: "",
+      currentPage1: 5,
+      currentPage2: 5,
+      currentPage3: 5,
+      currentPage4: 4
     };
   },
   methods: {
@@ -120,27 +190,40 @@ export default {
     },
     // 删除文章按钮
     handleDelete(index, row) {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
           // 点击确认删除后向后端发起请求删除该数据
           console.log(index, row);
           this.$message({
-            type: 'success',
-            message: '删除成功!'
+            type: "success",
+            message: "删除成功!"
           });
-        }).catch(() => {
+        })
+        .catch(() => {
           this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });          
+            type: "info",
+            message: "已取消删除"
+          });
         });
     },
     // 模糊搜索文章
     SearchArtcle(value) {
       console.log(value);
+    },
+    // 批量删除
+    DeleteArtcle(){
+
+    },
+    // 分页
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
     }
   }
 };

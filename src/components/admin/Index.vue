@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>仪表盘</h1>
+    <h1>数据统计</h1>
 
   </div>
 </template>
