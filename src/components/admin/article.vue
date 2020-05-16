@@ -1,83 +1,156 @@
 <template>
-    <div>
+  <el-container>
+    <el-main>
       <h1>文章管理</h1>
-      <div style="background-color: orange">
-        <el-table
-          :data="tableData"
-          style="width: 100%">
-          <el-table-column
-            label="日期"
-            width="180">
-            <template slot-scope="scope">
-              <i class="el-icon-time"></i>
-              <span style="margin-left: 10px">{{ scope.row.date }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="姓名"
-            width="180">
-            <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top">
-                <p>姓名: {{ scope.row.name }}</p>
-                <p>住址: {{ scope.row.address }}</p>
-                <div slot="reference" class="name-wrapper">
-                  <el-tag size="medium">{{ scope.row.name }}</el-tag>
+      <!--搜索功能-->
+      <el-row>
+        <el-col :span="4" :xs="8">
+          <el-input placeholder="根据文章标题或分类搜索" v-model="search" clearable></el-input>
+        </el-col>
+        <el-button type="primary" icon="el-icon-search" @click="SearchArtcle(search)"></el-button>
+      </el-row>
+      <!--文章展示-->
+      <el-row>
+        <el-col>
+          <el-table :data="tableData" border style="width: 100%" highlight-current-row>
+            <!--多选框-->
+            <el-table-column type="selection" width="40"></el-table-column>
+            <!--ID-->
+            <el-table-column fixed prop="id" label="id" width="80"></el-table-column>
+            <!--文章标题-->
+            <el-table-column prop="title" label="标题" width="170" show-overflow-tooltip></el-table-column>
+            <!--文章所属分类-->
+            <el-table-column prop="category" label="分类" width="100" show-overflow-tooltip></el-table-column>
+            <!--文章封面-->
+            <el-table-column label="文章封面" show-overflow-tooltip width="130">
+              <template slot-scope="scope">
+                <div class="demo-image__preview">
+                  <el-image
+                    :src="scope.row.article_vover_url"
+                    :preview-src-list="scope.row.article_vover_srcList"
+                    style="width: 100px; height: 40px"
+                  ></el-image>
                 </div>
-              </el-popover>
-            </template>
-          </el-table-column>
-          <el-table-column label="操作">
-            <template slot-scope="scope">
-              <el-button
-                size="mini"
-                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button
-                size="mini"
-                type="danger"
-                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-    </div>
+              </template>
+            </el-table-column>
+            <!--文章添加时间-->
+            <el-table-column prop="add_time" label="发布时间" width="160"></el-table-column>
+            <!--文章更新时间-->
+            <!-- <el-table-column prop="update_time" label="修改时间" width="160"></el-table-column> -->
+            <!--文章浏览量-->
+            <el-table-column prop="views_number" label="浏览量" width="80"></el-table-column>
+            <!--文章评论数-->
+            <el-table-column prop="comments_number" label="评论数" width="80"></el-table-column>
+            <!--文章推荐分数-->
+            <el-table-column label="推荐分数" show-overflow-tooltip width="170">
+              <template slot-scope="scope">
+                <div class="block">
+                  <el-rate v-model="scope.row.score" disabled show-score text-color="#ff9900"></el-rate>
+                </div>
+              </template>
+            </el-table-column>
+            <!--文章发布状态-->
+            <el-table-column label="发布状态" show-overflow-tooltip width="80">
+              <template slot-scope="scope">
+                <el-switch v-model="scope.row.release_status" disabled active-color="#13ce66"></el-switch>
+              </template>
+            </el-table-column>
+
+            <!--操作-->
+            <el-table-column label="操作" show-overflow-tooltip>
+              <template slot-scope="scope">
+                <el-button @click="handleDelete(scope.row)" type="text" size="small">删除</el-button>
+                <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-col>
+      </el-row>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
-    export default {
-        name: "articleNav",
-      data() {
-        return {
-          tableData: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
-          }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }],
-          search: ''
-        }
-      },
-      methods: {
-        handleEdit(index, row) {
+var tableData = [
+  {
+    id: "1000", // 文章id
+    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
+    category: "Vue学习", // 所属分类
+    add_time: "2020-02-16 09:27:33", // 发布时间
+    // update_time: "2020-05-16 16:27:33", // 修改时间
+    views_number: "9999", //浏览量
+    comments_number: "934", // 评论数
+    release_status: true, // 发布状态
+    article_vover_url:
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", // 文章封面地址
+    article_vover_srcList: [
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" //  文章预览图地址同封面地址
+    ],
+    score: 3.1 // 文章推荐分数 总计5分  后端根据浏览量和评论数计算推荐分数  值必须为int类型
+  },
+  {
+    id: "20022", // 文章id
+    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
+    category: "钢铁是怎样炼成的额", // 所属分类
+    add_time: "2020-02-16 09:27:33", // 发布时间
+    // update_time: "2020-05-16 16:27:33", // 修改时间
+    views_number: "9999", //浏览量
+    comments_number: "3453", // 评论数
+    release_status: false, // 发布状态
+    article_vover_url:
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+    article_vover_srcList: [
+      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+    ],
+    score: 5
+  }
+];
+export default {
+  name: "articleNav",
+  data() {
+    return {
+      tableData: tableData,
+      search: ""
+    };
+  },
+  methods: {
+    // 编辑文章按钮
+    handleEdit(index, row) {
+      console.log(index, row);
+    },
+    // 删除文章按钮
+    handleDelete(index, row) {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          // 点击确认删除后向后端发起请求删除该数据
           console.log(index, row);
-        },
-        handleDelete(index, row) {
-          console.log(index, row);
-        }
-      },
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+    },
+    // 模糊搜索文章
+    SearchArtcle(value) {
+      console.log(value);
     }
+  }
+};
 </script>
 
 <style scoped>
-
+.el-row {
+  margin-bottom: 20px;
+}
+.el-col {
+  border-radius: 4px;
+}
 </style>
