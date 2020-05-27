@@ -1,35 +1,39 @@
 <template>
   <el-container>
-    <el-header>登录界面</el-header>
-    <el-row>
-      <!--登录框居中-->
-      <el-col :span="6" :offset="9">
-        <div id="input">
-          <el-row :gutter="10">
-            <el-col>
-              <el-input
-                placeholder="请输入用户名"
-                v-model="user"
-                :maxlength="20"
-                clearable
-                prefix-icon="el-icon-s-custom"
-              ></el-input>
-            </el-col>
-          </el-row>
-          <el-row :gutter="10">
-            <el-col>
-              <el-input
-                placeholder="请输入密码"
-                v-model="passwd"
-                show-password
-                prefix-icon="el-icon-lock"
-              ></el-input>
-            </el-col>
-          </el-row>
-          <el-button type="primary" @click="LoginFunc(user,passwd)">登录</el-button>
-        </div>
-      </el-col>
-    </el-row>
+    <el-header>系统登录</el-header>
+    <div id="main">
+      <el-row>
+        <!--登录框居中-->
+        <el-col :span="6" :offset="9">
+          <div id="input">
+            <el-row :gutter="10">
+              <el-col>
+                <el-input
+                  placeholder="请输入用户名"
+                  v-model="username"
+                  :maxlength="20"
+                  clearable
+                  prefix-icon="el-icon-s-custom"
+                ></el-input>
+              </el-col>
+            </el-row>
+            <br />
+            <el-row :gutter="10">
+              <el-col>
+                <el-input
+                  placeholder="请输入密码"
+                  v-model="password"
+                  show-password
+                  prefix-icon="el-icon-lock"
+                ></el-input>
+              </el-col>
+            </el-row>
+            <br />
+            <el-button type="primary" @click="LoginFunc(username,password)">登录</el-button>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
   </el-container>
 </template>
 
@@ -39,19 +43,19 @@ export default {
   name: "login",
   data() {
     return {
-      user: "",
-      passwd: ""
+      username: "",
+      password: ""
     };
   },
   methods: {
-    LoginFunc(user, passwd) {
-      if ((user, passwd)) {
+    LoginFunc(username, password) {
+      if ((username, password)) {
         // 全局修改axios默认配置
         axios.defaults.baseURL = "http://127.0.0.1:8081";
         this.$axios
           .post("/api/user/login", {
-            user: user,
-            passwd: passwd
+            username: username,
+            password: password
           })
           .then(res => {
             // 校验后端返回的code
@@ -90,7 +94,6 @@ export default {
   line-height: 160px;
 }
 #input {
-  /* background-color: cadetblue; */
   height: 200px;
   margin-top: 300px;
 }

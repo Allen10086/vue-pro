@@ -58,7 +58,7 @@
             </el-table-column>
 
             <!--操作-->
-            <el-table-column label="操作" show-overflow-tooltip>
+            <el-table-column label="操作" show-overflow-tooltip >
               <template slot-scope="scope">
                 <el-button @click="handleDelete(scope.row)" type="text" size="small">删除</el-button>
                 <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
@@ -66,7 +66,7 @@
             </el-table-column>
           </el-table>
         </el-col>
-       
+
       </el-row>
        <!--分页-->
         <el-row>
