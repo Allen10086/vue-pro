@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1140px;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
+}
+
+.bg-white {
+    background-color: #fff!important;
+}
+
+.navbar {
+    position: relative;
+    padding: .5rem 1rem;
+}
+
+.navbar-brand {
+    display: inline-block;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+a {
+    color: #3490dc;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+element.style {
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 1.5rem;
+}

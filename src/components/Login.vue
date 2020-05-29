@@ -1,40 +1,42 @@
 <template>
-  <el-container>
-    <el-header>系统登录</el-header>
-    <div id="main">
-      <el-row>
-        <!--登录框居中-->
-        <el-col :span="6" :offset="9">
-          <div id="input">
-            <el-row :gutter="10">
-              <el-col>
-                <el-input
-                  placeholder="请输入用户名"
-                  v-model="username"
-                  :maxlength="20"
-                  clearable
-                  prefix-icon="el-icon-s-custom"
-                ></el-input>
-              </el-col>
-            </el-row>
-            <br />
-            <el-row :gutter="10">
-              <el-col>
-                <el-input
-                  placeholder="请输入密码"
-                  v-model="password"
-                  show-password
-                  prefix-icon="el-icon-lock"
-                ></el-input>
-              </el-col>
-            </el-row>
-            <br />
-            <el-button type="primary" @click="LoginFunc(username,password)">登录</el-button>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
-  </el-container>
+  <div id="background_image">
+    <el-container>
+      <el-header>系统登录</el-header>
+      <div id="main">
+        <el-row>
+          <!--登录框居中-->
+          <el-col :span="6" :offset="9">
+            <div id="input">
+              <el-row :gutter="10">
+                <el-col>
+                  <el-input
+                    placeholder="请输入用户名"
+                    v-model="username"
+                    :maxlength="20"
+                    clearable
+                    prefix-icon="el-icon-s-custom"
+                  ></el-input>
+                </el-col>
+              </el-row>
+              <br />
+              <el-row :gutter="10">
+                <el-col>
+                  <el-input
+                    placeholder="请输入密码"
+                    v-model="password"
+                    show-password
+                    prefix-icon="el-icon-lock"
+                  ></el-input>
+                </el-col>
+              </el-row>
+              <br />
+              <el-button type="primary" @click="LoginFunc(username,password)">登录</el-button>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+    </el-container>
+  </div>
 </template>
 
 <script>
@@ -81,6 +83,8 @@ export default {
 </script>
 
 <style scoped>
+/*加入背景样式*/
+@import "../assets/static/css/background_image.css";
 .el-header {
   background-color: #b3c0d1;
   color: #333;
