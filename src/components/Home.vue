@@ -7,8 +7,13 @@
           href="#"
           style="font-family: Nunito;font-weight: bold;font-size: 1.5rem"
         >Lz12Code</a>
-        <div style="float:right" class="navbar-brand"><router-link style="font-family: Nunito; font-size: 1rem" :to="{name:'login'}">后台登录</router-link></div>
-        
+        <div style="float:right" class="navbar-brand">
+          <router-link
+            style="font-family: Nunito; font-size: 1rem"
+            class="el-icon-s-custom"
+            :to="{name:'login'}"
+          >后台登录</router-link>
+        </div>
       </div>
     </div>
     <!-- <router-link :to="{name:'register'}">注册页面</router-link> -->
@@ -24,8 +29,8 @@
                 <!-- <h3>{{ item }}</h3> -->
                 <div class="item">
                   <a target="_blank" href="https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q">
-                    <img src="http://can.sfhfpc.com/sfhfpc/20191220083816.png" />
-                    <span class="carousel-caption">JavaScript 逆向系列课</span>
+                    <img src="https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg" />
+                    <span class="carousel-caption">GIT版本控制工具</span>
                     <span class="carousel-bg"></span>
                   </a>
                 </div>
@@ -40,18 +45,14 @@
                 <article class="excerpt excerpt-one">
                   <header>
                     <!--文章分类-->
-                    <a
-                      class="label label-important"
-                      href="这里放文章分类url"
-                      title="技术流综合知识"
-                    >技术流综合知识</a>
+                    <a class="label label-important" href="这里放文章分类url" title="技术流综合知识">技术流综合知识</a>
                     <!--文章标题-->
                     <h2>
                       <a
                         target="_blank"
                         href="这里放文章详情页的url"
-                        title="如何设计一款地震高岗一派溪山千古秀的反爬虫？-算法和反爬虫"
-                      >如何设计一款地震高岗一派溪山千古秀的反爬虫？</a>
+                        title="GIT版本控制工具"
+                      >GIT版本控制工具</a>
                     </h2>
                   </header>
                   <!--文章发布时间-->
@@ -61,7 +62,7 @@
                     <a target="_blank" href="这里放文章详情页rul" class="thumbnail">
                       <span>
                         <img
-                          src="http://can.sfhfpc.com/sfhfpc/20191220083816.png"
+                          src="https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg"
                           class="thumb"
                           style="display: inline;"
                         />
@@ -69,9 +70,30 @@
                     </a>
                   </p>
                   <!--文章预览-->
-                  <p
-                    class="note"
-                  >地震高岗，一派溪山千古秀； 门朝大海，三河合水万年流； 没错，这正是《鹿鼎记》地震高岗，一派溪山千古秀；地震高岗，一派溪山千古秀； 门朝大海，三河合水万年流； 没错，这正是《鹿鼎记》地震高岗，一派溪山千古秀； 门朝大海，三河合水万年流； 没错，这正是《鹿鼎记》天地会的接头没错，这正是《鹿鼎记》天地会的接头暗号。 天地会为什么需要接头暗号呢？ 假设天地会赤火堂香主派人从京城前扬州将一封非常重要的密函交给青木堂香主韦小宝，我们可以将这件事抽象为下图： 这件事的核心是帮派成员-甲将重要密函交给帮派</p>
+                  <p class="note">
+                    Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。
+                    Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。
+                    Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。
+                  </p>
+                  <p class="text-muted views">
+                    <span class="post-views">阅读(3820)</span>
+                    <span class="post-comments">评论(300)</span>
+                    <span class="post-tags">
+                      标签：
+                      <a
+                        href="http://www.sfhfpc.com/?tag=python"
+                        rel="tag"
+                        data-original-title
+                        title
+                      >GIT</a> /
+                      <a
+                        href="http://www.sfhfpc.com/?tag=%e5%8f%8d%e7%88%ac%e8%99%ab"
+                        rel="tag"
+                        data-original-title
+                        title
+                      >GIT使用</a>
+                    </span>
+                  </p>
                 </article>
               </el-col>
             </el-row>

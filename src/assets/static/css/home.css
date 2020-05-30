@@ -159,19 +159,6 @@ p {
     margin-right: 25.3%;
 }
 
-.excerpt-one .focus {
-    float: right;
-    width: 25.3%;
-    margin-top: 0;
-    margin-right: 0;
-}
-
-.excerpt .focus {
-    position: relative;
-    margin: 10px -6px 0 0;
-    overflow: hidden;
-}
-
 .excerpt p {
     margin-bottom: 0;
 }
@@ -179,25 +166,6 @@ p {
 p {
     margin: 0 0 10px;
     margin-top: 10px;
-}
-
-.focus .thumbnail .thumb {
-    height: 132px;
-}
-
-.thumbnail .thumb {
-    max-width: 240px;
-    width: 100%;
-    max-height: 132px;
-}
-
-img {
-    vertical-align: middle;
-    max-width: 100%;
-}
-
-img {
-    border: 0;
 }
 
 
@@ -257,6 +225,14 @@ img {
 .excerpt-one .note {
     margin-top: 6px;
     padding-right: 15px;
+}
+
+
+/*阅读 评论 标签*/
+
+.excerpt .views>span,
+.excerpt .views>a {
+    margin-right: 20px;
 }
 
 
