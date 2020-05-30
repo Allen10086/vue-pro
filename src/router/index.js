@@ -5,7 +5,7 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Survey from '@/components/survey'
 import Admin from '@/components/Admin'               // 后台管理
-import Index from '@/components/admin/Index'         // 仪表盘
+import Index from '@/components/admin/Index'         // 数据统计
 import Page from '@/components/admin/Page'           // 页面管理
 import Publish from '@/components/admin/Publish'       // 发布文章
 import Article from '@/components/admin/Article'     // 文章管理
@@ -18,7 +18,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/', redirect: 'Home'},
+    {path: '/', redirect: 'home'},
     {path: '/home', component: Home},
     {path: '/login', name: 'login', component: Login},
     {path: '/register', name: 'register', component: Register},
