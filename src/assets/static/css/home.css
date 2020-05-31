@@ -117,9 +117,9 @@ element.style {
 /*鼠标悬浮字体颜色渐变*/
 
 .excerpt h2 a {
-    -moz-transition: all 2s ease;
-    -webkit-transition: all 2s ease;
-    transition: all 2s ease;
+    -moz-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
     color: #00a67c;
 }
 
