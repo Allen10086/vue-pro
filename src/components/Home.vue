@@ -12,7 +12,7 @@
             style="font-family: Nunito; font-size: 1rem"
             class="el-icon-s-custom"
             :to="{name:'login'}"
-          >后台登录</router-link>
+          >&nbsp;后台登录</router-link>
         </div>
       </div>
     </div>
@@ -24,13 +24,13 @@
         <el-col :span="17">
           <el-main>
             <!--轮播图-->
-            <el-carousel>
-              <el-carousel-item v-for="item in 4" :key="item">
+            <el-carousel direction="vertical" :interval="5000">
+              <el-carousel-item v-for="carousel in carousel_array" :key="carousel.carousel_id">
                 <!-- <h3>{{ item }}</h3> -->
                 <div class="item">
-                  <a target="_blank" href="https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q">
-                    <img src="https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg" />
-                    <span class="carousel-caption">GIT版本控制工具</span>
+                  <a target="_blank" :href="carousel.carousel_href">
+                    <img :src="carousel.carousel_src" />
+                    <span class="carousel-caption">{{carousel.carousel_caption}}</span>
                     <span class="carousel-bg"></span>
                   </a>
                 </div>
@@ -39,30 +39,40 @@
             <!--分割线-->
             <el-divider content-position="left">文章内容</el-divider>
             <!--文章内容布局 <el-row :v-for>-->
-            <el-row>
+            <el-row v-for="article in article_array" :key="article.article_id">
               <el-col>
                 <!--文章正文-->
                 <article class="excerpt excerpt-one">
                   <header>
                     <!--文章分类-->
-                    <a class="label label-important" href="这里放文章分类url" title="技术流综合知识">技术流综合知识</a>
+                    <a
+                      class="label label-important"
+                      :href="article.article_class_url"
+                      :title="article.article_class"
+                    >
+                      {{article.article_class}}
+                      <i class="label-arrow"></i>
+                    </a>
+
                     <!--文章标题-->
                     <h2>
                       <a
                         target="_blank"
-                        href="这里放文章详情页的url"
-                        title="GIT版本控制工具"
-                      >GIT版本控制工具</a>
+                        :href="article.article_detail_url"
+                        :title="article.article_title"
+                      >{{article.article_title}}</a>
                     </h2>
                   </header>
                   <!--文章发布时间-->
-                  <p class="text-muted time">Lz12Code 发布于 2020-05-30 14-22-09</p>
+                  <p
+                    class="text-muted time el-icon-s-custom"
+                  >&nbsp;&nbsp;{{article.article_author}}&nbsp;&nbsp;发布于&nbsp;&nbsp;{{article.article_release_time}}</p>
                   <!--文章封面-->
                   <p class="focus">
-                    <a target="_blank" href="这里放文章详情页rul" class="thumbnail">
+                    <a target="_blank" :href="article.article_detail_url" class="thumbnail">
                       <span>
                         <img
-                          src="https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg"
+                          :src="article.article_focus_url"
                           class="thumb"
                           style="display: inline;"
                         />
@@ -70,28 +80,20 @@
                     </a>
                   </p>
                   <!--文章预览-->
-                  <p class="note">
-                    Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。
-                    Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。
-                    Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。
-                  </p>
+                  <p class="note">{{article.article_content}}</p>
                   <p class="text-muted views">
-                    <span class="post-views">阅读(3820)</span>
-                    <span class="post-comments">评论(300)</span>
+                    <span class="post-views">阅读({{article.article_views}})</span>
+                    <span class="post-comments">评论({{article.article_comments}})</span>
                     <span class="post-tags">
                       标签：
                       <a
-                        href="http://www.sfhfpc.com/?tag=python"
+                        :href="tag.tag_class_url"
                         rel="tag"
                         data-original-title
                         title
-                      >GIT</a> /
-                      <a
-                        href="http://www.sfhfpc.com/?tag=%e5%8f%8d%e7%88%ac%e8%99%ab"
-                        rel="tag"
-                        data-original-title
-                        title
-                      >GIT使用</a>
+                        v-for="tag in article.article_tags"
+                        :key="tag.tag_id"
+                      >{{tag.tag}}&nbsp;&nbsp;/&nbsp;&nbsp;</a>
                     </span>
                   </p>
                 </article>
@@ -110,16 +112,110 @@
 </template>
 
 <script>
+// 轮播图
+var carousel_array = [
+  {
+    carousel_src:
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590909501932&di=ae98381c43fa0128d6f219e56fe876dd&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01109a581b3802a84a0d304ff58e47.JPG%401280w_1l_2o_100sh.jpg",
+    carousel_id: "1",
+    carousel_caption: "时间就是金钱",
+    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+  },
+  {
+    carousel_src:
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590910098343&di=c723e2978392fe213fe7d726b6284aa8&imgtype=0&src=http%3A%2F%2Fimg.yanj.cn%2Fstore%2Fgoods%2F2433%2F2433_bb3d59a4fe001e725d2f70c208434136.jpg_max.jpg",
+    carousel_id: "2",
+    carousel_caption: "风光壁纸-缤纷植物图",
+    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+  },
+  {
+    carousel_src:
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590909633533&di=06ba82c19878a8801224193f37c7eb21&imgtype=0&src=http%3A%2F%2Fpic18.nipic.com%2F20120102%2F6127299_105223279000_2.jpg",
+    carousel_id: "3",
+    carousel_caption: "做个有良知的人",
+    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+  }
+];
+// 文章列表
+var article_array = [
+  {
+    article_id: "1",
+    article_class: "博客全站导航",
+    article_class_url: "https://www.cnblogs.com/songzhixue/",
+    article_detail_url: "https://www.cnblogs.com/songzhixue/p/10717975.html",
+    article_title: "GIT版本控制工具",
+    article_release_time: "2020-05-30 14-22-09",
+    article_author: "Lz12Code",
+    article_focus_url:
+      "https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg",
+    article_content:
+      "Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。",
+    article_views: "9999",
+    article_comments: "8888",
+    article_tags: [
+      {
+        tag_id: "1",
+        tag: "GO",
+        tag_class_url: "https://github.com/Lz12Code/go-blog"
+      },
+      {
+        tag_id: "2",
+        tag: "Python",
+        tag_class_url: "https://www.cnblogs.com/songzhixue/"
+      },
+      {
+        tag_id: "3",
+        tag: "Linux",
+        tag_class_url: "https://www.cnblogs.com/songzhixue/p/11145760.html"
+      }
+    ]
+  },
+  {
+    article_id: "2",
+    article_class: "博客管理系统",
+    article_class_url: "https://www.cnblogs.com/songzhixue/",
+    article_detail_url: "https://www.cnblogs.com/songzhixue/p/10717975.html",
+    article_title: "博客管理系统",
+    article_release_time: "2020-05-30 14-22-09",
+    article_author: "Lz12Code",
+    article_focus_url:
+      "https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg",
+    article_content:
+      "Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。",
+    article_views: "9999",
+    article_comments: "8888",
+    article_tags: [
+      {
+        tag_id: "1",
+        tag: "GO",
+        tag_class_url: "https://github.com/Lz12Code/go-blog"
+      },
+      {
+        tag_id: "2",
+        tag: "Python",
+        tag_class_url: "https://www.cnblogs.com/songzhixue/"
+      },
+      {
+        tag_id: "3",
+        tag: "Linux",
+        tag_class_url: "https://www.cnblogs.com/songzhixue/p/11145760.html"
+      }
+    ]
+  }
+];
 export default {
   name: "home",
   data() {
-    return {};
+    return {
+      carousel_array: carousel_array,
+      article_array: article_array
+    };
   }
 };
 </script>
 
 <style scoped>
 /*当前页面CSS样式*/
-@import "../assets/static/css/background_image.css";
+/* @import "../assets/static/css/background_image.css"; */
 @import "../assets/static/css/home.css";
 </style>

@@ -104,12 +104,27 @@ element.style {
 
 .excerpt h2 {
     display: inline;
-    font-size: 22px;
+    font-size: 20px;
     margin: 0;
-    font-weight: normal;
+    font-weight: 400;
     position: relative;
     top: 1px;
     line-height: 25px;
+    margin-left: 10px;
+}
+
+
+/*鼠标悬浮字体颜色渐变*/
+
+.excerpt h2 a {
+    -moz-transition: all 2s ease;
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+    color: #00a67c;
+}
+
+.excerpt h2 a:hover {
+    color: #FF5E52;
 }
 
 .excerpt header .label {
@@ -128,6 +143,22 @@ element.style {
     vertical-align: baseline;
     white-space: nowrap;
     background-color: #FF5E52;
+}
+
+.label .label-arrow {
+    top: 7px;
+    right: -4px;
+    border-left: 4px solid #FF5E52;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+}
+
+.label-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    content: "";
 }
 
 .excerpt .text-muted {
@@ -243,4 +274,8 @@ img {
     width: 100%;
     height: 300px;
     margin-top: 15px;
+}
+
+.el-row {
+    margin-bottom: 20px;
 }
