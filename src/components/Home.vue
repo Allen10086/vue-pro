@@ -64,9 +64,9 @@
                     </h2>
                   </header>
                   <!--文章发布时间-->
-                  <p
+                  <span
                     class="text-muted time el-icon-s-custom"
-                  >&nbsp;&nbsp;{{article.article_author}}&nbsp;&nbsp;发布于&nbsp;&nbsp;{{article.article_release_time}}</p>
+                  >&nbsp;&nbsp;{{article.article_author}}&nbsp;&nbsp;发布于&nbsp;&nbsp;</span><span class="text-muted time el-icon-time">&nbsp;&nbsp;{{article.article_release_time}}</span>
                   <!--文章封面-->
                   <p class="focus">
                     <a target="_blank" :href="article.article_detail_url" class="thumbnail">
@@ -147,7 +147,7 @@ var article_array = [
     article_release_time: "2020-05-30 14-22-09",
     article_author: "Lz12Code",
     article_focus_url:
-      "https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg",
+      "http://images-1253193383.cos.ap-beijing.myqcloud.com/0bff613caa7d54275711ab7832afe02e.png",
     article_content:
       "Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。",
     article_views: "9999",
@@ -155,7 +155,7 @@ var article_array = [
     article_tags: [
       {
         tag_id: "1",
-        tag: "GO",
+        tag: "Go",
         tag_class_url: "https://github.com/Lz12Code/go-blog"
       },
       {
@@ -179,15 +179,15 @@ var article_array = [
     article_release_time: "2020-05-30 14-22-09",
     article_author: "Lz12Code",
     article_focus_url:
-      "https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg",
+      "http://images-1253193383.cos.ap-beijing.myqcloud.com/0bff613caa7d54275711ab7832afe02e.png",
     article_content:
-      "Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。",
+      "Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一Git 是一个开源的分布式版本控制系统Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。",
     article_views: "9999",
     article_comments: "8888",
     article_tags: [
       {
         tag_id: "1",
-        tag: "GO",
+        tag: "Go",
         tag_class_url: "https://github.com/Lz12Code/go-blog"
       },
       {
