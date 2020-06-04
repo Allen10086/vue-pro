@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <h1>我是注册页面</h1>
-  </div>
+  <el-main>
+    关于
+  </el-main>
 </template>
 
 <script>
 export default {
-  name: "register",
+  name: "about",
   data() {
     return {};
   }
@@ -14,4 +14,5 @@ export default {
 </script>
 
 <style scoped>
+@import "../../assets/static/css/el-main.css";
 </style>

@@ -67,8 +67,8 @@ export default {
               this.$router.push("/admin");
             } else {
               alert("登录失败");
-              // 登陆失败跳转到首页
-              this.$router.push("/");
+              // 登陆失败留在当前登录页面
+              this.$router.push("/login");
             }
           })
           .catch(err => {
@@ -84,7 +84,7 @@ export default {
 
 <style scoped>
 /*加入背景样式*/
-@import "../assets/static/css/background_image.css";
+@import "../../assets/static/css/background_image.css";
 .el-header {
   background-color: #b3c0d1;
   color: #333;
