@@ -126,7 +126,8 @@ element.style {
 }
 
 .excerpt h2 a:hover {
-    color: #FF5E52;
+    /* color: #FF5E52; */
+    color: #0d6cbf;
 }
 
 .excerpt header .label {
@@ -144,13 +145,15 @@ element.style {
     color: #ffffff;
     vertical-align: baseline;
     white-space: nowrap;
-    background-color: #FF5E52;
+    /* background-color: #FF5E52; */
+    background-color: #0d6cbf;
 }
 
 .label .label-arrow {
     top: 7px;
     right: -4px;
-    border-left: 4px solid #FF5E52;
+    /* border-left: 4px solid #FF5E52; */
+    border-left: 4px solid #0d6cbf;
     border-top: 4px solid transparent;
     border-bottom: 4px solid transparent;
 }
