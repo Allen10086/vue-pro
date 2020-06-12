@@ -78,6 +78,7 @@ var MenuList = [
 ];
 export default {
   name: "admin",
+  
   data() {
     return {
       MenuList: MenuList,
@@ -85,6 +86,7 @@ export default {
     };
   },
   methods: {
+    
     MenuFunc(val) {
       this.$router.push({ name: val }); // 必须给一个路由出口<router-view></router-view>
     },

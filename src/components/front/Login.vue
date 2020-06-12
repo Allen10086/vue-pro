@@ -55,7 +55,7 @@ export default {
         // 全局修改axios默认配置
         axios.defaults.baseURL = "http://127.0.0.1:8081";
         this.$axios
-          .post("/api/user/login", {
+          .post("/api/v1/user/login", {
             username: username,
             password: password
           })
