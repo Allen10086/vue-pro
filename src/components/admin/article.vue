@@ -58,7 +58,7 @@
             </el-table-column>
 
             <!--操作-->
-            <el-table-column label="操作" show-overflow-tooltip >
+            <el-table-column label="操作" show-overflow-tooltip>
               <template slot-scope="scope">
                 <el-button @click="handleDelete(scope.row)" type="text" size="small">删除</el-button>
                 <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
@@ -66,24 +66,23 @@
             </el-table-column>
           </el-table>
         </el-col>
-
       </el-row>
-       <!--分页-->
-        <el-row>
-          <el-col>
-            <div class="block">
-              <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="currentPage4"
-                :page-sizes="[10, 20, 30, 40]"
-                :page-size="100"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="100"
-              ></el-pagination>
-            </div>
-          </el-col>
-        </el-row>
+      <!--分页-->
+      <el-row>
+        <el-col>
+          <div class="block">
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage4"
+              :page-sizes="[10, 20, 30, 40]"
+              :page-size="100"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="100"
+            ></el-pagination>
+          </div>
+        </el-col>
+      </el-row>
     </el-main>
   </el-container>
 </template>
@@ -215,9 +214,7 @@ export default {
       console.log(value);
     },
     // 批量删除
-    DeleteArtcle(){
-
-    },
+    DeleteArtcle() {},
     // 分页
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
