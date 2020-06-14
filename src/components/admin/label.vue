@@ -4,18 +4,22 @@
 
     <el-row>
       <el-col>
-        <el-button type="text" @click="dialogVisible = true">添加分类</el-button>
+        <el-button type="text" @click="dialogVisible = true,clickFlag('insert')">添加分类</el-button>
 
-        <el-dialog
-          title="添加分类"
-          :visible.sync="dialogVisible"
-          width="30%"
-          :before-close="handleClose"
-        >
+        <el-dialog title="分类" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
           <el-input v-model="category" placeholder="请输入分类名称"></el-input>
           <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="insertCategory(category)">确 定</el-button>
+            <!-- <el-button type="primary" @click="insertCategory(category)">确 定</el-button> -->
+
+            <!--这里用到flag判断点击的不同按钮执行不同的操作 按钮的显示隐藏用到v-show判断flag的值-->
+            <el-button type="primary" v-show="flag==='insert'" @click="insertCategory(category)">确 定</el-button>
+
+            <el-button
+              type="primary"
+              v-show="flag==='modify'"
+              @click="handleModify(modifyId,category)"
+            >修 改</el-button>
           </span>
         </el-dialog>
       </el-col>
@@ -28,19 +32,19 @@
           border
           fit
           stripe
-          size="small"
+          size="medium "
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column type="index" label="序号" width="50"></el-table-column>
+          <el-table-column type="index" label="序号" width="100"></el-table-column>
           <!-- <el-table-column prop="id" label="id" width="50"></el-table-column> -->
-          <el-table-column prop="category_name" label="名称" width="100"></el-table-column>
-          <el-table-column prop="create_time" label="创建时间" width="150">
+          <el-table-column prop="category_name" label="名称" width="200"></el-table-column>
+          <el-table-column prop="create_time" label="创建时间" width="200">
             <template slot-scope="scope">
               <span>{{scope.row.create_time | formatDate}}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="update_time" label="更新时间" width="150">
+          <el-table-column prop="update_time" label="更新时间" width="200">
             <template slot-scope="scope">
               <span>{{scope.row.update_time | formatDate}}</span>
             </template>
@@ -49,7 +53,11 @@
           <el-table-column label="操作" width="100">
             <template slot-scope="scope">
               <el-button @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
-              <el-button @click="deleteClick1(scope.row.id)" type="text" size="small">编辑</el-button>
+              <el-button
+                @click="dialogVisible = true,clickFlag('modify',scope.row.id,scope.row.category_name)"
+                type="text"
+                size="small"
+              >编辑</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -71,10 +79,13 @@ export default {
     return {
       tableData: [],
       dialogVisible: false,
-      category: ""
+      category: "", // 输入的分类名称
+      flag: "", // 标识是哪个按钮 编辑还是添加 用于区别点击的按钮来操作不同的事件 复用模态框,
+      modifyId: ""
     };
   },
   methods: {
+    // 删除分类
     handleDelete(res) {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -131,6 +142,34 @@ export default {
           });
         this.reload();
       }
+    },
+    // 修改分类
+    handleModify(categoryId, categoryName) {
+      console.log(categoryId, categoryName);
+      this.$axios
+        .put(
+          "/api/v1/category/modify",
+          // 构造请求参数form-data
+          qs.stringify({
+            id: categoryId,
+            category_name: categoryName
+          })
+        )
+
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      this.reload();
+    },
+    // 主要用来区分是什么按钮添加分类或修改分类
+    clickFlag(res, categoryId, category_name) {
+      this.flag = res;
+      this.modifyId = categoryId;
+      this.category = category_name; // v-model在输入框内显示选择分类的分类名称
+      console.log(this.flag, this.modifyId);
     }
   },
   // 日期过滤器 时间戳转换成日期时间
@@ -140,6 +179,7 @@ export default {
       return formatDate(date, "yyyy-MM-dd hh:mm");
     }
   },
+  // 钩子 组件加载后运行 查询所有分类
   created: function() {
     // 组件创建之后
     // 在created这个方法中可以操作后端的数据  数据驱动试图
