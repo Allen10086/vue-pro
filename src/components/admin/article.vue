@@ -27,33 +27,40 @@
               <template slot-scope="scope">
                 <div class="demo-image__preview">
                   <el-image
-                    :src="scope.row.article_vover_url"
-                    :preview-src-list="scope.row.article_vover_srcList"
+                    :src="scope.row.cover_address"
                     style="width: 100px; height: 40px"
                   ></el-image>
                 </div>
               </template>
             </el-table-column>
             <!--文章添加时间-->
-            <el-table-column prop="add_time" label="发布时间" width="160"></el-table-column>
+            <el-table-column prop="create_time" label="发布时间" width="200">
+              <template slot-scope="scope">
+                <span>{{scope.row.create_time | formatDate}}</span>
+              </template>
+            </el-table-column>
             <!--文章更新时间-->
-            <!-- <el-table-column prop="update_time" label="修改时间" width="160"></el-table-column> -->
+           <el-table-column prop="update_time" label="更新时间" width="200">
+            <template slot-scope="scope">
+              <span>{{scope.row.update_time | formatDate}}</span>
+            </template>
+          </el-table-column>
             <!--文章浏览量-->
-            <el-table-column prop="views_number" label="浏览量" width="80"></el-table-column>
+            <el-table-column prop="views" label="浏览量" width="100"></el-table-column>
             <!--文章评论数-->
-            <el-table-column prop="comments_number" label="评论数" width="80"></el-table-column>
+            <!-- <el-table-column prop="comments_number" label="评论数" width="80"></el-table-column> -->
             <!--文章推荐分数-->
-            <el-table-column label="推荐分数" show-overflow-tooltip width="170">
+            <!-- <el-table-column label="推荐分数" show-overflow-tooltip width="170">
               <template slot-scope="scope">
                 <div class="block">
                   <el-rate v-model="scope.row.score" disabled show-score text-color="#ff9900"></el-rate>
                 </div>
               </template>
-            </el-table-column>
+            </el-table-column>-->
             <!--文章发布状态-->
             <el-table-column label="发布状态" show-overflow-tooltip width="80">
               <template slot-scope="scope">
-                <el-switch v-model="scope.row.release_status" disabled active-color="#13ce66"></el-switch>
+                <el-switch v-model="scope.row.status" disabled active-color="#13ce66"></el-switch>
               </template>
             </el-table-column>
 
@@ -88,93 +95,30 @@
 </template>
 
 <script>
-var tableData = [
-  {
-    id: "1000", // 文章id
-    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
-    category: "Vue学习", // 所属分类
-    add_time: "2020-02-16 09:27:33", // 发布时间
-    // update_time: "2020-05-16 16:27:33", // 修改时间
-    views_number: "9999", //浏览量
-    comments_number: "934", // 评论数
-    release_status: true, // 发布状态
-    article_vover_url:
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", // 文章封面地址
-    article_vover_srcList: [
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" //  文章预览图地址同封面地址
-    ],
-    score: 3.1 // 文章推荐分数 总计5分  后端根据浏览量和评论数计算推荐分数  值必须为int类型
-  },
-  {
-    id: "20022", // 文章id
-    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
-    category: "钢铁是怎样炼成的额", // 所属分类
-    add_time: "2020-02-16 09:27:33", // 发布时间
-    // update_time: "2020-05-16 16:27:33", // 修改时间
-    views_number: "9999", //浏览量
-    comments_number: "3453", // 评论数
-    release_status: false, // 发布状态
-    article_vover_url:
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-    article_vover_srcList: [
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-    ],
-    score: 5
-  },
-  {
-    id: "20022", // 文章id
-    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
-    category: "钢铁是怎样炼成的额", // 所属分类
-    add_time: "2020-02-16 09:27:33", // 发布时间
-    // update_time: "2020-05-16 16:27:33", // 修改时间
-    views_number: "9999", //浏览量
-    comments_number: "3453", // 评论数
-    release_status: true, // 发布状态
-    article_vover_url:
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-    article_vover_srcList: [
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-    ],
-    score: 2
-  },
-  {
-    id: "20022", // 文章id
-    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
-    category: "钢铁是怎样炼成的额", // 所属分类
-    add_time: "2020-02-16 09:27:33", // 发布时间
-    // update_time: "2020-05-16 16:27:33", // 修改时间
-    views_number: "9999", //浏览量
-    comments_number: "3453", // 评论数
-    release_status: false, // 发布状态
-    article_vover_url:
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-    article_vover_srcList: [
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-    ],
-    score: 4.5
-  },
-  {
-    id: "20022", // 文章id
-    title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
-    category: "钢铁是怎样炼成的额", // 所属分类
-    add_time: "2020-02-16 09:27:33", // 发布时间
-    // update_time: "2020-05-16 16:27:33", // 修改时间
-    views_number: "9999", //浏览量
-    comments_number: "3453", // 评论数
-    release_status: true, // 发布状态
-    article_vover_url:
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-    article_vover_srcList: [
-      "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-    ],
-    score: 4.7
-  }
-];
+// var tableData = [
+//   {
+//     id: "1000", // 文章id
+//     title: "上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄", // 文章标题
+//     category: "Vue学习", // 所属分类
+//     createTime: "2020-02-16 09:27:33", // 发布时间
+//     updateTime: "2020-05-16 16:27:33", // 修改时间
+//     viewsNumber: "9999", //浏览量
+//     status: true, // 发布状态
+//     coverAddress:
+//       "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", // 文章封面地址
+//     coverPreview: [
+//       "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" //  文章预览图地址同封面地址
+//     ],
+//     // score: 3.1 // 文章推荐分数 总计5分  后端根据浏览量和评论数计算推荐分数  值必须为int类型
+//   },
+// ];
+// 导入时间戳转换日期时间的js
+import { formatDate } from "../../assets/static/js/time.js";
 export default {
   name: "articleNav",
   data() {
     return {
-      tableData: tableData,
+      tableData: [],
       search: "",
       currentPage1: 5,
       currentPage2: 5,
@@ -222,6 +166,33 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
     }
+  },
+  // 日期过滤器 时间戳转换成日期时间
+  filters: {
+    formatDate(time) {
+      var date = new Date(time);
+      return formatDate(date, "yyyy-MM-dd hh:mm");
+    }
+  },
+  // 钩子 组件加载后运行 查询所有分类
+  created: function() {
+    // 组件创建之后
+    // 在created这个方法中可以操作后端的数据  数据驱动试图
+    // 应用：发起Ajax请求
+
+    this.$axios
+      .get("/api/v1/article/all")
+      .then(res => {
+        // 校验后端返回的code
+        if (res.data.code === 1000) {
+          this.tableData = res.data.articleList;
+        } else {
+          alert("数据获取失败");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>

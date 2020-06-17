@@ -81,20 +81,26 @@
 // 轮播图
 var carousel_array = [
   {
-    carousel_src: "http://www.yyyweb.com/demo/slice-box/images/2.jpg",
+    carousel_src: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/3c09d3fb-6ead-4d8a-aa6c-783178a1f14d.jpg",
     carousel_id: "1",
     carousel_caption: "时间就是金钱",
     carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
   },
   {
-    carousel_src: "http://www.yyyweb.com/demo/slice-box/images/4.jpg",
+    carousel_src: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/64c33d0f-8a30-4706-9e70-28e82e2c66e6.jpg",
     carousel_id: "2",
     carousel_caption: "风光壁纸-缤纷植物图",
     carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
   },
   {
-    carousel_src: "http://www.yyyweb.com/demo/slice-box/images/7.jpg",
+    carousel_src: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/da46bf2f-284f-4ebe-8158-98fb3a6c7e6a.jpg",
     carousel_id: "3",
+    carousel_caption: "做个有良知的人",
+    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+  },
+  {
+    carousel_src: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/da46bf2f-284f-4ebe-8158-98fb3a6c7e6a.jpg",
+    carousel_id: "4",
     carousel_caption: "做个有良知的人",
     carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
   }
