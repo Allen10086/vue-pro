@@ -16,20 +16,24 @@
           <el-table :data="tableData" border style="width: 100%" highlight-current-row>
             <!--多选框-->
             <el-table-column type="selection" width="40"></el-table-column>
+            <el-table-column fixed label="序号" type="index" width="80"></el-table-column>
             <!--ID-->
-            <el-table-column fixed prop="id" label="id" width="80"></el-table-column>
+            <!-- <el-table-column prop="id" label="id" width="80"></el-table-column> -->
             <!--文章标题-->
             <el-table-column prop="title" label="标题" width="170" show-overflow-tooltip></el-table-column>
             <!--文章所属分类-->
-            <el-table-column prop="category" label="分类" width="100" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="category_name" label="分类" width="100" show-overflow-tooltip></el-table-column>
+            <!--文章标签-->
+            <el-table-column prop="tag_name" label="标签" width="200" show-overflow-tooltip>
+              <template slot-scope="scope">
+                <span>{{scope.row.tag_name}}</span>
+              </template>
+            </el-table-column>
             <!--文章封面-->
             <el-table-column label="文章封面" show-overflow-tooltip width="130">
               <template slot-scope="scope">
                 <div class="demo-image__preview">
-                  <el-image
-                    :src="scope.row.cover_address"
-                    style="width: 100px; height: 40px"
-                  ></el-image>
+                  <el-image :src="scope.row.cover_address" style="width: 100px; height: 40px"></el-image>
                 </div>
               </template>
             </el-table-column>
@@ -40,11 +44,11 @@
               </template>
             </el-table-column>
             <!--文章更新时间-->
-           <el-table-column prop="update_time" label="更新时间" width="200">
-            <template slot-scope="scope">
-              <span>{{scope.row.update_time | formatDate}}</span>
-            </template>
-          </el-table-column>
+            <el-table-column prop="update_time" label="更新时间" width="200">
+              <template slot-scope="scope">
+                <span>{{scope.row.update_time | formatDate}}</span>
+              </template>
+            </el-table-column>
             <!--文章浏览量-->
             <el-table-column prop="views" label="浏览量" width="100"></el-table-column>
             <!--文章评论数-->

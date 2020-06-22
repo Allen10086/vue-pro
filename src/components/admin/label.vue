@@ -190,7 +190,7 @@ export default {
       .then(res => {
         // 校验后端返回的code
         if (res.data.code === 1000) {
-          this.tableData = res.data.CategoryList;
+          this.tableData = res.data.categoryList;
         } else {
           alert("数据获取失败");
         }

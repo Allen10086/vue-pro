@@ -207,8 +207,8 @@ export default {
       .then(res => {
         // 校验后端返回的code
         if (res.data.code === 1000) {
-          this.options = res.data.CategoryList;
-          console.log(res.data.CategoryList);
+          this.options = res.data.categoryList;
+          console.log(res.data.categoryList);
         } else {
           alert("数据获取失败");
         }
