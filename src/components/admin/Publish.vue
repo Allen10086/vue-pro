@@ -6,13 +6,13 @@
           <h1>发布文章</h1>
           <el-row :gutter="3">
             <el-col :span="12">
-              <el-input v-model="ArticleTitle" placeholder="请输入文章标题" clearable></el-input>
+              <el-input v-model="title" placeholder="请输入文章标题" clearable></el-input>
             </el-col>
           </el-row>
           <el-row>
             <el-col>
               <el-select
-                v-model="ArticleLable"
+                v-model="category"
                 placeholder="请选择文章分类"
                 size="medium"
                 :filterable="true"
@@ -25,6 +25,11 @@
                   :value="item.id"
                 ></el-option>
               </el-select>
+            </el-col>
+          </el-row>
+          <el-row :gutter="3">
+            <el-col :span="12">
+              <el-input v-model="tags" placeholder="请输入文章标签 多个标签用分号分隔" clearable></el-input>
             </el-col>
           </el-row>
           <el-row>
@@ -61,7 +66,7 @@
               <div id="editor">
                 <mavon-editor
                   style="height: 100%"
-                  v-model="Context"
+                  v-model="md"
                   ref="md"
                   @imgAdd="$imgAdd"
                   @change="change"
@@ -71,8 +76,8 @@
           </el-row>
           <el-row :gutter="3">
             <el-col>
-              <el-button type="success"  @click="PublishButton">文章发布</el-button>
-              <el-button type="primary"  @click="PublishSave">保存草稿</el-button>
+              <el-button type="success" @click="PublishButton">文章发布</el-button>
+              <el-button type="primary" @click="PublishSave">保存草稿</el-button>
             </el-col>
           </el-row>
         </el-main>
@@ -83,21 +88,24 @@
 
 <script>
 // Local Registration
+import axios from "axios";
+import qs from "qs"; // post请求传form-data要转换
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
-
+axios.defaults.baseURL = "http://127.0.0.1:8081";
 export default {
   name: "pulishNav",
   data() {
     return {
-      Context: "", // 文章内容
-      ArticleTitle: "", // 文章标题
+      md: "", // 文章内容
+      title: "", // 文章标题
       // 文章分类
       options: [],
-      ArticleLable: "", // 文章分类
+      category: "", // 文章分类
       // textarea: "",     // 简介
       OssUrl: "", // 图片上传aliyun返回的url
       html: "", // markdown解析成html
+      tags: "", // 文章标签
       fileList: [
         {
           name: "demo.jpeg",
@@ -110,26 +118,68 @@ export default {
   methods: {
     // 发布文章
     PublishButton() {
-      if (this.Context && this.ArticleTitle && this.ArticleLable) {
+      if (this.md && this.title && this.category) {
         // 获取文章之后的处理逻辑
-        console.log(this.ArticleTitle);
-        console.log(this.ArticleLable);
+        console.log(this.title);
+        console.log(this.category);
         console.log(this.OssUrl);
         console.log(this.Context);
         console.log(this.html);
+        console.log(this.tags);
+        this.$axios
+          .post(
+            "/api/v1/article/create",
+            // 构造请求参数form-data
+            qs.stringify({
+              title: this.title,
+              category: this.category,
+              ossUrl: this.OssUrl,
+              html: this.html,
+              tags: this.tags,
+              status: true,
+              md: this.md
+            })
+          )
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       } else {
         alert("文章内容不能不空！");
       }
     },
     // 保存文章
     PublishSave() {
-      if (this.Context && this.ArticleTitle && this.ArticleLable) {
+      if (this.md && this.title && this.category) {
         // 获取文章之后的处理逻辑
-        console.log(this.ArticleTitle);
-        console.log(this.ArticleLable);
-        console.log(this.OssUrl);
-        console.log(this.Context);
-        console.log(this.html);
+        // console.log(this.title);
+        // console.log(this.category);
+        // console.log(this.OssUrl);
+        // console.log(this.md);
+        // console.log(this.html);
+        // console.log(this.tags);
+        this.$axios
+          .post(
+            "/api/v1/article/create",
+            // 构造请求参数form-data
+            qs.stringify({
+              title: this.title,
+              category: this.category,
+              ossUrl: this.OssUrl,
+              html: this.html,
+              tags: this.tags,
+              status: false,
+              md: this.md
+            })
+          )
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       } else {
         alert("文章内容不能不空！");
       }
