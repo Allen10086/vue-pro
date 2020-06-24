@@ -7,14 +7,15 @@
 <script>
 export default {
   name: "App",
-  provide() {
-    return {
-      reload: this.reload
-    };
-  },
+ 
   data() {
     return {
       isRouterAlive: true
+    };
+  },
+   provide() {
+    return {
+      reload: this.reload
     };
   },
   methods: {

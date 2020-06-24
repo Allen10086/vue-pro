@@ -13,6 +13,9 @@ Router.prototype.push = function push(to) {
 import mavonEditor from 'mavon-editor' // 引入markdown 所有组件
 import 'mavon-editor/dist/css/index.css'
 
+
+
+
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
 

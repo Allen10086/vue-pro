@@ -74,7 +74,7 @@ import { formatDate } from "../../assets/static/js/time.js";
 axios.defaults.baseURL = "http://127.0.0.1:8081";
 export default {
   name: "labelNav",
-  inject: ['reload'],
+  inject: ["reload"],
   data() {
     return {
       tableData: [],
@@ -133,7 +133,6 @@ export default {
               category_name: res
             })
           )
-
           .then(function(response) {
             console.log(response);
           })

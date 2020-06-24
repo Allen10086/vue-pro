@@ -71,8 +71,8 @@
             <!--操作-->
             <el-table-column label="操作" show-overflow-tooltip>
               <template slot-scope="scope">
-                <el-button @click="handleDelete(scope.row)" type="text" size="small">删除</el-button>
-                <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
+                <el-button @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
+                <el-button @click="handleEdit(scope.row.id)" type="text" size="small">编辑</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -136,7 +136,7 @@ export default {
       console.log(index, row);
     },
     // 删除文章按钮
-    handleDelete(index, row) {
+    handleDelete(articleId) {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -144,7 +144,13 @@ export default {
       })
         .then(() => {
           // 点击确认删除后向后端发起请求删除该数据
-          console.log(index, row);
+         
+          this.$axios.delete("/api/v1/article/delete", {
+            params: {
+              articleId: articleId
+            }
+          });
+          console.log(articleId);
           this.$message({
             type: "success",
             message: "删除成功!"

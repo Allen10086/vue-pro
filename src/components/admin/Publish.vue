@@ -92,6 +92,7 @@ import axios from "axios";
 import qs from "qs"; // post请求传form-data要转换
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
+
 axios.defaults.baseURL = "http://127.0.0.1:8081";
 export default {
   name: "pulishNav",
@@ -120,12 +121,6 @@ export default {
     PublishButton() {
       if (this.md && this.title && this.category) {
         // 获取文章之后的处理逻辑
-        console.log(this.title);
-        console.log(this.category);
-        console.log(this.OssUrl);
-        console.log(this.Context);
-        console.log(this.html);
-        console.log(this.tags);
         this.$axios
           .post(
             "/api/v1/article/create",
@@ -141,7 +136,10 @@ export default {
             })
           )
           .then(function(response) {
-            console.log(response);
+            console.log("res:", response);
+            if (response.data.code === 1000) {
+              alert("文章发布成功！");
+            }
           })
           .catch(function(error) {
             console.log(error);
@@ -154,12 +152,6 @@ export default {
     PublishSave() {
       if (this.md && this.title && this.category) {
         // 获取文章之后的处理逻辑
-        // console.log(this.title);
-        // console.log(this.category);
-        // console.log(this.OssUrl);
-        // console.log(this.md);
-        // console.log(this.html);
-        // console.log(this.tags);
         this.$axios
           .post(
             "/api/v1/article/create",
@@ -175,7 +167,7 @@ export default {
             })
           )
           .then(function(response) {
-            console.log(response);
+            alert("文章保存为草稿！");
           })
           .catch(function(error) {
             console.log(error);

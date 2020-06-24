@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "linkNav"
+        name: "linkz"
     }
 </script>
 
